@@ -28,7 +28,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         [SerializeField] private AudioClip m_JumpSound = null;           // the sound played when character leaves the ground.
         [SerializeField] private AudioClip m_LandSound = null;           // the sound played when character touches back on ground.
 
-        private Camera m_Camera;
+        public Camera m_Camera;
         private bool m_Jump;
         private float m_YRotation;
         private Vector2 m_Input;
@@ -46,7 +46,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private void Start()
         {
             m_CharacterController = GetComponent<CharacterController>();
-            m_Camera = Camera.main;
+            //m_Camera = Camera.main;
             m_OriginalCameraPosition = m_Camera.transform.localPosition;
             m_FovKick.Setup(m_Camera);
             m_HeadBob.Setup(m_Camera, m_StepInterval);
@@ -57,6 +57,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
 			m_MouseLook.Init(transform , m_Camera.transform);
         }
 
+        public string _jump = "Jump";
+        public string _joyLX = "LeftJoyX";
+        public string _joyLY = "LeftJoyY";
+        public string _joyRX = "RightJoyX";
+        public string _joyRY = "RightJoyY";
 
         // Update is called once per frame
         private void Update()
@@ -65,7 +70,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             // the jump state needs to read here to make sure it is not missed
             if (!m_Jump)
             {
-                m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
+                m_Jump = CrossPlatformInputManager.GetButtonDown(_jump);
             }
 
             if (!m_PreviouslyGrounded && m_CharacterController.isGrounded)
@@ -204,8 +209,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private void GetInput(out float speed)
         {
             // Read input
-            float horizontal = CrossPlatformInputManager.GetAxis("LeftJoyX");
-            float vertical = CrossPlatformInputManager.GetAxis("LeftJoyY");
+            float horizontal = CrossPlatformInputManager.GetAxis(_joyLX);
+            float vertical = CrossPlatformInputManager.GetAxis(_joyLY);
 
 
             bool waswalking = m_IsWalking;
@@ -237,7 +242,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private void RotateView()
         {
-            m_MouseLook.LookRotation (transform, m_Camera.transform);
+            m_MouseLook.LookRotation (transform, m_Camera.transform, _joyRX, _joyRY);
         }
 
 

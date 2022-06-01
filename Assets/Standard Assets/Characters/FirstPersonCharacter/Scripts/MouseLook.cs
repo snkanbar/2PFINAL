@@ -28,10 +28,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
         }
 
 
-        public void LookRotation(Transform character, Transform camera)
+        public void LookRotation(Transform character, Transform camera, string joyX, string joyY)
         {
-            float yRot01 = CrossPlatformInputManager.GetAxis("RightJoyX") * YSensitivity01;
-            float xRot01 = CrossPlatformInputManager.GetAxis("RightJoyY") * XSensitivity01;
+            float yRot01 = CrossPlatformInputManager.GetAxis(joyX) * YSensitivity01;
+            float xRot01 = CrossPlatformInputManager.GetAxis(joyY) * XSensitivity01;
 
             m_CharacterTargetRot01 *= Quaternion.Euler (0f, yRot01, 0f);
             m_CameraTargetRot01 *= Quaternion.Euler (xRot01, 0f, 0f);

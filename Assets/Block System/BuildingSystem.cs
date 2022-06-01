@@ -9,6 +9,13 @@ public class BuildingSystem : MonoBehaviour
     public GameObject BlockGUIPrefab;
     public GameObject BlockPrefab;
 
+    public bool isdestroyer = false;
+    public bool isbuilder = false;
+
+    public string _south = "South";
+    public string _east = "East";
+
+
     public Camera _camera;
     private GameObject _blockGUI;
     private bool _canBuild = false;
@@ -28,7 +35,6 @@ public class BuildingSystem : MonoBehaviour
     {
         //find block build location
         RaycastHit hit;
-
         if (Physics.Raycast(_camera.ScreenPointToRay(new Vector3(Screen.width / 4, Screen.height / 2, 0)), out hit, 10, Mask))
         {
             Vector3 pos = hit.point;
@@ -54,7 +60,7 @@ public class BuildingSystem : MonoBehaviour
         }*/
 
 //loop through types
-if (Input.GetButtonDown("South"))
+if (Input.GetButtonDown(_south))
         {
             typeSelect++;
             if (typeSelect >= _blockSystem.Blocks.Count)
@@ -63,20 +69,26 @@ if (Input.GetButtonDown("South"))
             }
         }
 
-        
+
         //build block
-        if (_canBuild == true)
+        if (_canBuild == true || isdestroyer)
         {
             _blockGUI.transform.position = _buildPos; //update transparent location
 
-            if (Input.GetButtonDown("South"))
+            if (Input.GetButtonDown(_south) && isbuilder)
             {
                 PlaceBlock();                
             }
 
-            if (Input.GetButtonDown("East"))
+            if (Input.GetButtonDown(_east) && isdestroyer)
             {
-                DestroyBlock();
+                if (Block != null)
+                {
+                    if (!Block.name.ToLower().Contains("plane"))
+                    {
+                        DestroyBlock();
+                    }
+                }
             }
         }
     }
