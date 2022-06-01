@@ -33,13 +33,13 @@ public class RaycastDestroyer : MonoBehaviour
                 {
                     Debug.DrawLine(ray.origin, hit.point);
                     Debug.Log("Clicked on " + hit.transform.gameObject.name);
-                    //Destroy(hit.transform.gameObject);
+                    Destroy(hit.transform.gameObject);
 
 
-                    if (name.ToLower().Contains("plane"))
+                    /*if (name.ToLower().Contains("plane"))
                     {
                         Destroy(hit.transform.gameObject);
-                    }
+                    }*/
 
                 }
             }

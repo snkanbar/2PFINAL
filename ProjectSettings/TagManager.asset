@@ -10,6 +10,8 @@ TagManager:
   - Target
   - marker
   - Sticky
+  - Destroyer
+  - VOXELISLANDS
   layers:
   - Default
   - TransparentFX
@@ -20,7 +22,7 @@ TagManager:
   - Ground
   - Block
   - DontDestroy
-  - 
+  - Destroyer
   - 
   - 
   - 
