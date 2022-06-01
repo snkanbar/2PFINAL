@@ -9,6 +9,14 @@ public class Timer : MonoBehaviour
     float cntdnw = 120.0f;
     public Text disvar;
 
+    public Text GameOver;
+
+
+    private void Start()
+    {
+        GameOver.enabled = false;
+
+    }
     void Update()
     {
         if (cntdnw > 0)
@@ -20,9 +28,12 @@ public class Timer : MonoBehaviour
         if (cntdnw < 0)
         {
             Debug.Log("Completed");
+            GameOver.enabled = true;
+
         }
     }
 }
+
 /*{
     public Text TimerText;
     public bool playing;
