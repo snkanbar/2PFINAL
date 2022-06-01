@@ -5,7 +5,7 @@ using UnityEngine;
 public class BuildingSystem : MonoBehaviour
 {
     public LayerMask Mask;
-    public LayerMask DontDestroy;
+    //public LayerMask NonoMask;
     public GameObject BlockGUIPrefab;
     public GameObject BlockPrefab;
 
@@ -15,7 +15,7 @@ public class BuildingSystem : MonoBehaviour
     private BlockSystem _blockSystem;
     private Vector3 _buildPos;
     private int typeSelect = 0;
-    private GameObject Nono;
+    private GameObject Block;
     // Start is called before the first frame update
     private void Start()
     {
@@ -34,15 +34,27 @@ public class BuildingSystem : MonoBehaviour
             Vector3 pos = hit.point;
             _buildPos = new Vector3(Mathf.Round(pos.x), Mathf.Round(pos.y), Mathf.Round(pos.z));
             _canBuild = true;
-            Nono = hit.transform.gameObject;
+            Block = hit.transform.gameObject;
         }
         else
         {
             _canBuild = false;
         }
 
-        //loop through types
-        if (Input.GetButtonDown("South"))
+        /*
+        if (Physics.Raycast(_camera.ScreenPointToRay(new Vector3(Screen.width / 4, Screen.height / 2, 0)), out hit, 10, NonoMask))
+        { Vector3 pos = hit.point;
+        _buildPos = new Vector3(Mathf.Round(pos.x), Mathf.Round(pos.y), Mathf.Round(pos.z));
+        _canBuild = true;
+        Nono = hit.transform.gameObject;
+    }
+        else
+        {
+            _canBuild = false;
+        }*/
+
+//loop through types
+if (Input.GetButtonDown("South"))
         {
             typeSelect++;
             if (typeSelect >= _blockSystem.Blocks.Count)
@@ -62,7 +74,7 @@ public class BuildingSystem : MonoBehaviour
                 PlaceBlock();                
             }
 
-            if (Input.GetButtonDown("North"))
+            if (Input.GetButtonDown("East"))
             {
                 DestroyBlock();
             }
@@ -78,6 +90,6 @@ public class BuildingSystem : MonoBehaviour
     }
     private void DestroyBlock()
     {
-        Destroy(Nono);        
+        Destroy(Block);        
     }
 }

@@ -32,11 +32,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
         {
             float yRot02 = CrossPlatformInputManager.GetAxis("RightJoyX2") * YSensitivity02;
             float xRot02 = CrossPlatformInputManager.GetAxis("RightJoyY2") * XSensitivity02;
-
+            
             m_CharacterTargetRot02 *= Quaternion.Euler (0f, yRot02, 0f);
             m_CameraTargetRot02 *= Quaternion.Euler (xRot02, 0f, 0f);
 
-            if(clampVerticalRotation02)
+            if (clampVerticalRotation02)
                 m_CameraTargetRot02 = ClampRotationAroundXAxis02(m_CameraTargetRot02);
 
             if(smooth02)
