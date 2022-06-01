@@ -54,7 +54,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             m_NextStep = m_StepCycle / 2f;
             m_Jumping = false;
             m_AudioSource = GetComponent<AudioSource>();
-            m_MouseLook2.Init(transform, m_Camera.transform);
+            m_MouseLook2.Init02(transform, m_Camera.transform);
         }
 
 
@@ -130,7 +130,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             ProgressStepCycle(speed);
             UpdateCameraPosition(speed);
 
-            m_MouseLook2.UpdateCursorLock();
+            m_MouseLook2.UpdateCursorLock02();
         }
 
 
@@ -237,7 +237,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
         private void RotateView()
         {
-            m_MouseLook2.LookRotation(transform, m_Camera.transform);
+            m_MouseLook2.LookRotation02(transform, m_Camera.transform);
         }
 
 

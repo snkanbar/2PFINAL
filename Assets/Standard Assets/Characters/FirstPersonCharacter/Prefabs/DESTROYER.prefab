@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8532583469541204975}
   - component: {fileID: 8532583469545057705}
   m_Layer: 0
-  m_Name: FirstPersonCharacter
+  m_Name: FirstPersonCharacter02
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -165,14 +165,14 @@ MonoBehaviour:
   m_StickToGroundForce: 10
   m_GravityMultiplier: 2
   m_MouseLook2:
-    XSensitivity: 20
-    YSensitivity: 20
-    clampVerticalRotation: 1
-    MinimumX: -90
-    MaximumX: 90
-    smooth: 0
-    smoothTime: 5
-    lockCursor: 1
+    XSensitivity02: 20
+    YSensitivity02: 20
+    clampVerticalRotation02: 1
+    MinimumX02: -90
+    MaximumX02: 90
+    smooth02: 0
+    smoothTime02: 5
+    lockCursor02: 1
   m_UseFovKick: 1
   m_FovKick:
     Camera: {fileID: 0}

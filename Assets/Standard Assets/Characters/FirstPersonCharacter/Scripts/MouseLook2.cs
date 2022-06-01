@@ -7,95 +7,95 @@ namespace UnityStandardAssets.Characters.FirstPerson
     [Serializable]
     public class MouseLook2
     {
-        public float XSensitivity = 20f;
-        public float YSensitivity = 20f;
-        public bool clampVerticalRotation = true;
-        public float MinimumX = -90F;
-        public float MaximumX = 90F;
-        public bool smooth;
-        public float smoothTime = 5f;
-        public bool lockCursor = true;
+        public float XSensitivity02 = 20f;
+        public float YSensitivity02 = 20f;
+        public bool clampVerticalRotation02 = true;
+        public float MinimumX02 = -90F;
+        public float MaximumX02 = 90F;
+        public bool smooth02;
+        public float smoothTime02 = 5f;
+        public bool lockCursor02 = true;
 
 
-        private Quaternion m_CharacterTargetRot;
-        private Quaternion m_CameraTargetRot;
-        private bool m_cursorIsLocked = true;
+        private Quaternion m_CharacterTargetRot02;
+        private Quaternion m_CameraTargetRot02;
+        private bool m_cursorIsLocked02 = true;
 
-        public void Init(Transform character, Transform camera)
+        public void Init02(Transform character, Transform camera)
         {
-            m_CharacterTargetRot = character.localRotation;
-            m_CameraTargetRot = camera.localRotation;
+            m_CharacterTargetRot02 = character.localRotation;
+            m_CameraTargetRot02 = camera.localRotation;
         }
 
 
-        public void LookRotation(Transform character, Transform camera)
+        public void LookRotation02(Transform character, Transform camera)
         {
-            float yRot = CrossPlatformInputManager.GetAxis("RightJoyX2") * XSensitivity;
-            //float xRot = CrossPlatformInputManager.GetAxis("RightJoyY2") * YSensitivity;
+            float yRot02 = CrossPlatformInputManager.GetAxis("RightJoyX2") * YSensitivity02;
+            float xRot02 = CrossPlatformInputManager.GetAxis("RightJoyY2") * XSensitivity02;
 
-            m_CharacterTargetRot *= Quaternion.Euler (0f, yRot, 0f);
-           // m_CameraTargetRot *= Quaternion.Euler (-xRot, 0f, 0f);
+            m_CharacterTargetRot02 *= Quaternion.Euler (0f, yRot02, 0f);
+            m_CameraTargetRot02 *= Quaternion.Euler (xRot02, 0f, 0f);
 
-            if(clampVerticalRotation)
-                m_CameraTargetRot = ClampRotationAroundXAxis (m_CameraTargetRot);
+            if(clampVerticalRotation02)
+                m_CameraTargetRot02 = ClampRotationAroundXAxis02(m_CameraTargetRot02);
 
-            if(smooth)
+            if(smooth02)
             {
-                character.localRotation = Quaternion.Slerp (character.localRotation, m_CharacterTargetRot,
-                    smoothTime * Time.deltaTime);
-                camera.localRotation = Quaternion.Slerp (camera.localRotation, m_CameraTargetRot,
-                    smoothTime * Time.deltaTime);
+                character.localRotation = Quaternion.Slerp (character.localRotation, m_CharacterTargetRot02,
+                    smoothTime02 * Time.deltaTime);
+                camera.localRotation = Quaternion.Slerp (camera.localRotation, m_CameraTargetRot02,
+                    smoothTime02 * Time.deltaTime);
             }
             else
             {
-                character.localRotation = m_CharacterTargetRot;
-                camera.localRotation = m_CameraTargetRot;
+                character.localRotation = m_CharacterTargetRot02;
+                camera.localRotation = m_CameraTargetRot02;
             }
 
-            UpdateCursorLock();
+            UpdateCursorLock02();
         }
 
-        public void SetCursorLock(bool value)
+        public void SetCursorLock02(bool value)
         {
-            lockCursor = value;
-            if(!lockCursor)
+            lockCursor02 = value;
+            if(!lockCursor02)
             {//we force unlock the cursor if the user disable the cursor locking helper
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
             }
         }
 
-        public void UpdateCursorLock()
+        public void UpdateCursorLock02()
         {
             //if the user set "lockCursor" we check & properly lock the cursos
-            if (lockCursor)
-                InternalLockUpdate();
+            if (lockCursor02)
+                InternalLockUpdate02();
         }
 
-        private void InternalLockUpdate()
+        private void InternalLockUpdate02()
         {
             if(Input.GetKeyUp(KeyCode.Escape))
             {
-                m_cursorIsLocked = false;
+                m_cursorIsLocked02 = false;
             }
             else if(Input.GetMouseButtonUp(0))
             {
-                m_cursorIsLocked = true;
+                m_cursorIsLocked02 = true;
             }
 
-            if (m_cursorIsLocked)
+            if (m_cursorIsLocked02)
             {
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
             }
-            else if (!m_cursorIsLocked)
+            else if (!m_cursorIsLocked02)
             {
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
             }
         }
 
-        Quaternion ClampRotationAroundXAxis(Quaternion q)
+        Quaternion ClampRotationAroundXAxis02(Quaternion q)
         {
             q.x /= q.w;
             q.y /= q.w;
@@ -104,7 +104,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
             float angleX = 2.0f * Mathf.Rad2Deg * Mathf.Atan (q.x);
 
-            angleX = Mathf.Clamp (angleX, MinimumX, MaximumX);
+            angleX = Mathf.Clamp (angleX, MinimumX02, MaximumX02);
 
             q.x = Mathf.Tan (0.5f * Mathf.Deg2Rad * angleX);
 
