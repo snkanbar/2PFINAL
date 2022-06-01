@@ -46,6 +46,7 @@ public class BuildingSystem : MonoBehaviour
             if (typeSelect >= _blockSystem.Blocks.Count) { typeSelect = 0; }
         }
 
+        
         //build block
         if (_canBuild)
         {
@@ -53,8 +54,13 @@ public class BuildingSystem : MonoBehaviour
 
             if (Input.GetButtonDown("South"))
             {
-                PlaceBlock();
+                PlaceBlock();                
             }
+
+            if (Input.GetButtonDown("South2"))
+                {
+                    DestroyBlock();
+                }
         }
     }
 
@@ -64,5 +70,9 @@ public class BuildingSystem : MonoBehaviour
         Block type = _blockSystem.Blocks[typeSelect];
         block.name = type.BlockName;
         block.GetComponent<MeshRenderer>().material = type.BlockMaterial;
+    }
+    private void DestroyBlock()
+    {
+        Destroy(gameObject);        
     }
 }
