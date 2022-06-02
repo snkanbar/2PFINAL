@@ -6,7 +6,9 @@ public class RaycastDestroyer : MonoBehaviour
 {
     private Transform cameraTransform;
     public Camera cam;
-    public GameObject blocks;
+    public GameObject cam1;
+
+
 
 
 
@@ -14,6 +16,9 @@ public class RaycastDestroyer : MonoBehaviour
     {
         cameraTransform = GameObject.Find("Camera").transform;
         //cam = cameraTransform.camera;
+        cam1.SetActive(false);
+            
+       
         
     }
     void Update()
@@ -29,7 +34,7 @@ public class RaycastDestroyer : MonoBehaviour
         {
             if (Input.GetButtonDown("East2"))
             {
-
+                cam1.SetActive(true);
                 Ray ray = cam.ScreenPointToRay(Input.mousePosition);
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit, 10000))
@@ -37,13 +42,12 @@ public class RaycastDestroyer : MonoBehaviour
                     Debug.DrawLine(ray.origin, hit.point);
                     Debug.Log("Clicked on " + hit.transform.gameObject.name);
 
-                    if(gameObject.tag=="Block")
-                    { 
-                        Destroy(hit.transform.gameObject);
-                    }
-                    else
-                    { return; }
-                  
+                    
+                    
+                    Destroy(hit.transform.gameObject);
+                    //cam1.SetActive(true);
+
+
 
 
                     /*if (name.ToLower().Contains("plane"))
@@ -52,6 +56,7 @@ public class RaycastDestroyer : MonoBehaviour
                     }*/
 
                 }
+                cam1.SetActive(true);
             }
         }
     }
