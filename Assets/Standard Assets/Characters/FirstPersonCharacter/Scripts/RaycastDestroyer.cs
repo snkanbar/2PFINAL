@@ -6,6 +6,7 @@ public class RaycastDestroyer : MonoBehaviour
 {
     private Transform cameraTransform;
     public Camera cam;
+    public GameObject blocks;
 
 
 
@@ -13,13 +14,15 @@ public class RaycastDestroyer : MonoBehaviour
     {
         cameraTransform = GameObject.Find("Camera").transform;
         //cam = cameraTransform.camera;
+        
     }
     void Update()
     {
         {
             {
                 Vector3 forward = transform.TransformDirection(Vector3.forward) * 100;
-                Debug.DrawRay(transform.position, forward, Color.white);
+                Debug.DrawRay(transform.position, forward, Color.red);
+                
             }
         }
 
@@ -33,7 +36,14 @@ public class RaycastDestroyer : MonoBehaviour
                 {
                     Debug.DrawLine(ray.origin, hit.point);
                     Debug.Log("Clicked on " + hit.transform.gameObject.name);
-                    Destroy(hit.transform.gameObject);
+
+                    if(gameObject.tag=="Block")
+                    { 
+                        Destroy(hit.transform.gameObject);
+                    }
+                    else
+                    { return; }
+                  
 
 
                     /*if (name.ToLower().Contains("plane"))
